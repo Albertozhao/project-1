@@ -13,7 +13,7 @@ const api = {
   }
   
   function getResults (query) {
-    fetch(`${api.base}weather?q=${query}&units=imperial&APPID=${api.key}`)
+    fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
       .then(weather => {
         return weather.json();
       }).then(displayResults);
@@ -28,13 +28,13 @@ const api = {
     date.innerText = dateBuilder(now);
   
     let temp = document.querySelector('.current .temp');
-    temp.innerHTML = `${Math.round(weather.main.temp)}<span>°f</span>`;
+    temp.innerHTML = `${Math.round(weather.main.temp)}<span>°c</span>`;
   
     let weather_el = document.querySelector('.current .weather');
     weather_el.innerText = weather.weather[0].main;
   
     let highlow = document.querySelector('.high-low');
-    highlow.innerText = `${Math.round(weather.main.temp_min)}°f / ${Math.round(weather.main.temp_max)}°f`;
+    highlow.innerText = `${Math.round(weather.main.temp_min)}°c / ${Math.round(weather.main.temp_max)}°c`;
   }
   
   function dateBuilder (d) {
